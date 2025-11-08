@@ -1,8 +1,11 @@
 import os
 import shutil
 from datetime import datetime
+import sys
 from tkinter import Tk, filedialog, messagebox, Toplevel, Label, PhotoImage, Button
 
+
+BASE_DIR = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
 # Single hidden Tk root used by dialogs
 _root = Tk()
 _root.withdraw()
@@ -18,7 +21,7 @@ def show_help_image(parent=_root):
     help_win.geometry("1920x1080")
     help_win.resizable(False, False)
 
-    img_path = os.path.join(os.path.dirname(__file__), "minecraft_folder.png")
+    img_path = os.path.join(BASE_DIR, "minecraft_folder.png")
     if not os.path.exists(img_path):
         Label(help_win, text="(Image d'aide manquante : minecraft_folder.png)").pack(pady=20)
     else:
@@ -113,7 +116,7 @@ def copy_files(src_folder, dest_folder, extensions=None):
 def handle_mods_installation(target_dir):
     """Install mods into the target directory with optional backup handling."""
     mods_dir = os.path.join(target_dir, "mods")
-    mods_source = os.path.join(os.path.dirname(__file__), "mods_to_install")
+    mods_source = os.path.join(BASE_DIR, "mods_to_install")
 
     if os.path.exists(mods_dir) and os.listdir(mods_dir):
         choice = messagebox.askyesnocancel(
@@ -141,14 +144,14 @@ def handle_mods_installation(target_dir):
 def optional_install(target_dir, folder_name, display_name, extensions=None):
     """Optionally install additional folders (e.g., resourcepacks, shaderpacks)."""
     if messagebox.askyesno("Option", f"Souhaites-tu installer les {display_name} ?"):
-        source = os.path.join(os.path.dirname(__file__), f"{folder_name}_to_install")
+        source = os.path.join(BASE_DIR, f"{folder_name}_to_install")
         dest = os.path.join(target_dir, folder_name)
         copy_files(source, dest, extensions)
         messagebox.showinfo("Terminé", f"{display_name.capitalize()} installés avec succès !")
 
 def install_servers_dat(target_dir):
     """Copy servers.dat into the target directory if the user agrees."""
-    servers_src = os.path.join(os.path.dirname(__file__), "servers.dat")
+    servers_src = os.path.join(BASE_DIR, "servers.dat")
     if os.path.exists(servers_src) and messagebox.askyesno("Serveurs", "Souhaites-tu ajouter la liste des serveurs ?"):
         servers_dst = os.path.join(target_dir, "servers.dat")
         shutil.copy2(servers_src, servers_dst)
