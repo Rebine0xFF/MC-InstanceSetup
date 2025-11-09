@@ -11,7 +11,7 @@ _root = Tk()
 _root.withdraw()
 
 def show_help_image(parent=_root):
-    """Show an instructional image to help the user locate the Minecraft folder.
+    """Show an image to help the user locate the Minecraft folder.
 
     This creates a transient Toplevel window, displays the image if available,
     and blocks interaction with other windows until closed.
@@ -55,7 +55,7 @@ def select_directory():
     messagebox.showinfo("Installation", "Choisis ton dossier Minecraft. Plus vite que ça stp enfaite")
     directory = filedialog.askdirectory(title="Choisis ton dossier Minecraft", parent=_root)
     if not directory:
-        messagebox.showwarning("Annulé", "Aucun dossier sélectionné. Installation annulée. T'est une énorme merde")
+        messagebox.showwarning("Annulé", "Aucun dossier sélectionné. Installation annulée. Tu peux le faire, on croit en toi.")
         return None
     return directory
 
@@ -166,7 +166,7 @@ def main():
         optional_install(target_dir, "resourcepacks", "packs de ressources", extensions=[".zip"])
         optional_install(target_dir, "shaderpacks", "packs de shaders", extensions=None)
         install_servers_dat(target_dir)
-        messagebox.showinfo("Installation complète", "✅ Tous les éléments ont été installés avec succès ! Et va bien te faire foutre par la même occasion, j'ai pris 4h à coder cette merde putain de daube")
+        messagebox.showinfo("Installation complète", "✅ Tous les éléments ont été installés avec succès ! 🎉")
 
 if __name__ == "__main__":
     main()
