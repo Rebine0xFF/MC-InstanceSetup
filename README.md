@@ -40,10 +40,17 @@ If you want to build a custom version of this installer for your own Minecraft s
 3. Replace `servers.dat` with your own file containing your server list.
 4. (Optional) Replace `minecraft_folder.png` with your own image to show in the help window.
 
+Setup the build environment:
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+pip install pyinstaller
+```
+
 Then compile your own executable using **PyInstaller**:
 
 ```bash
-pip install pyinstaller
 pyinstaller --onefile --windowed --name MinecraftModInstaller --icon=icon.ico --add-data "mods_to_install;mods_to_install" --add-data "resourcepacks_to_install;resourcepacks_to_install" --add-data "shaderpacks_to_install;shaderpacks_to_install" --add-data "minecraft_folder.png;." --add-data "servers.dat;." installer.py
 ```
 
