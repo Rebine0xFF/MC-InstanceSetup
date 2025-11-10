@@ -52,7 +52,7 @@ def select_directory():
     if messagebox.askyesno("Aide", "Souhaites-tu voir une image pour t'aider à trouver ton dossier Minecraft ?"):
         show_help_image(_root)
 
-    messagebox.showinfo("Installation", "Choisis ton dossier Minecraft. Plus vite que ça stp enfaite")
+    messagebox.showinfo("Installation", "Choisis ton dossier Minecraft. Attention le dossier doit contenir la bonne version du jeu! (1.21.1 pour la serveur survie moddé actuel) Plus vite que ça stp enfaite")
     directory = filedialog.askdirectory(title="Choisis ton dossier Minecraft", parent=_root)
     if not directory:
         messagebox.showwarning("Annulé", "Aucun dossier sélectionné. Installation annulée. Tu peux le faire, on croit en toi.")
